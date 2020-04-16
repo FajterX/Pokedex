@@ -1,0 +1,88 @@
+<div class="pokemonEntry"  *ngIf="pokemon && species">
+    <a [ngClass]="{'active': active}" [routerLink]="[ '/pokemon', name ]">
+        <div class="pokemonBtn" 
+        [ngStyle]="{'background-color': colors[species.color.name], 'border-top-left-radius': index === 0 ? '0' : '20px', 
+        'border-top-right-radius': index === 0 ? '0' : '20px'}">
+            <img class="sprite" [title]="pokemon.name" [src]="pokemon.sprites.front_default" alt="">
+            <div class="pokemonNames">
+                <div>{{pokemon.name | uppercase}}</div>
+                <div>{{'#' + pokemon.id}} </div>
+            </div>
+        </div>
+    </a>    
+    <div *ngIf="active" class="details" [@inOutAnimation] [ngStyle]="{'border': '3px solid' + colors[species.color.name]}">
+        <div class="nav">
+            <div class="navBtn">
+                <span (click)="onNavClicked(1)" [ngClass]="{'selected': selectedInfo === 1}" >About</span>
+            </div>
+            <div class="navBtn">
+                <span (click)="onNavClicked(2)" [ngClass]="{'selected': selectedInfo === 2}" >Moves</span>
+            </div>
+            <div class="navBtn">
+                <span (click)="onNavClicked(3)" [ngClass]="{'selected': selectedInfo === 3}" >Evolutions</span>
+            </div>
+        </div>
+        <div class="pokemonInfo">
+            <div *ngIf="selectedInfo === 1">
+                <div class="flavor">
+                    {{ flavorText }}
+                </div>
+                <div class="wrapper">
+                    <div>
+                            <div class="info"><span>HABITAT: </span> {{ species.habitat ? species.habitat.name : 'unknown'}} </div>
+                            <div class="info"><span>GENERATION: </span> {{ species.generation.name}} </div>
+                            <div class="info"><span>ABILITIES: </span> {{ (pokemon.abilities | joinPipe) }} </div>
+                            <div class="info"><span>TYPES: </span> <span style="font-weight: unset;" *ngFor="let type of pokemon.types">{{ type.type.name}} </span> </div>
+                    </div>
+                    <div>
+                        <div class="info"><span>HEIGHT: </span> {{ (pokemon.height | multiply:10 ) + ' cm' }} </div>
+                        <div class="info"><span>WEIGHT: </span> {{ (pokemon.weight | multiply:0.1 ) + ' kg' }} </div>
+                        <div class="info">
+                            <span> {{ pokemon.stats[5].stat.name | uppercase }}: </span>
+                            {{ pokemon.stats[5].base_stat }}
+                        </div>
+                        <div class="info">
+                            <span> {{ pokemon.stats[0].stat.name | uppercase }}: </span>
+                            {{ pokemon.stats[0].base_stat }}
+                        </div>
+                    </div>
+                    <div>
+                        <div class="info">
+                            <span> {{ pokemon.stats[1].stat.name | uppercase }}: </span>
+                            {{ pokemon.stats[1].base_stat }}
+                        </div>
+                        <div class="info">
+                            <span> {{ pokemon.stats[2].stat.name | uppercase }}: </span>
+                            {{ pokemon.stats[2].base_stat }}
+                        </div>
+                        <div class="info">
+                            <span> {{ pokemon.stats[3].stat.name | uppercase }}: </span>
+                            {{ pokemon.stats[3].base_stat }}
+                        </div>
+                        <div class="info">
+                            <span> {{ pokemon.stats[4].stat.name | uppercase }}: </span>
+                            {{ pokemon.stats[4].base_stat }}
+                        </div>
+                </div>
+                </div>
+            </div>
+            <div *ngIf="selectedInfo === 2" class="section">
+                <div *ngFor="let move of visibleMoves" class="move">
+                    <div>
+                        {{move.move.name}}
+                    </div> 
+                    <div>
+                        learned at {{move.version_group_details[0].level_learned_at}}
+                    </div>
+                </div>
+            </div>
+            <div class="evolutionWrapper" *ngIf="selectedInfo === 3 && evolutionSnippet">
+                <div class="evColumn" *ngFor="let evolutions of evolutionSnippet">
+                    <div *ngFor="let evolution of evolutions">
+                        <app-pokemon-detail [name]="evolution"></app-pokemon-detail>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

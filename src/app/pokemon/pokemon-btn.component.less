@@ -1,0 +1,167 @@
+.pokemonEntry {
+	margin-bottom: 10px;
+
+	a {
+		text-decoration: none;
+		color: black;
+
+		.pokemonBtn {
+			height: 144px;
+			border-top-left-radius: 20px;
+			border-bottom-left-radius: 20px;
+			display: flex;
+			align-items: center;
+			padding-left: 45px;
+			transition: border-bottom-left-radius 0.2s ease-out;
+			transition: opacity 0.2s ease-out;
+
+			&:hover {
+				opacity: 0.85;
+			}
+
+			.sprite {
+				min-width: 96px;
+			}
+
+			.pokemonNames {
+				margin: 0 10px;
+				font-weight: bold;
+				min-width: 220px;
+				font-size: 30px;
+
+				:last-child {
+					font-size: 18px;
+				}
+			}
+
+			.types {
+				.type {
+					padding: 5px;
+					display: flex;
+					align-items: center;
+
+					span {
+						padding-left: 15px;
+						font-size: 20px;
+					}
+				}
+			}
+		}
+	}
+
+	.active {
+		.pokemonBtn {
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;
+		}
+	}
+
+	.details {
+		border: 1px solid black;
+		overflow: hidden;
+
+		.nav {
+			width: 420px;
+			margin: auto;
+
+			.navBtn {
+				display: inline-block;
+				width: 33%;
+				text-align: center;
+
+				span {
+					display: inline-block;
+					cursor: pointer;
+					padding: 10px 10px;
+					min-width: 100%;
+					transition: background-color 0.2s ease-out;
+					border-bottom-left-radius: 5px;
+					border-bottom-right-radius: 5px;
+
+					&:hover {
+						background-color: #f3f3f3;
+					}
+				}
+			}
+
+			.selected {
+				background-color: #f3f3f3;
+			}
+		}
+
+		.pokemonInfo {
+			padding: 15px 20px;
+			font-size: 14px;
+
+			.section {
+				margin: 0 20px;
+			}
+
+			.flavor {
+				font-style: italic;
+				color: grey;
+				text-align: center;
+
+				margin-bottom: 20px;
+			}
+
+			.move {
+				padding: 5px;
+				font-size: 18px;
+				display: flex;
+				width: 80%;
+				margin: 0 auto;
+
+				div {
+					width: 50%;
+					text-align: center;
+				}
+			}
+
+			.wrapper {
+				display: flex;
+				align-items: center;
+				justify-content: space-evenly;
+				.info {
+					padding: 5px;
+
+					span {
+						font-weight: bold;
+					}
+				}
+			}
+
+			.evolutionWrapper {
+				display: flex;
+				justify-content: space-around;
+				width: 80%;
+				margin: 0 auto;
+				align-items: center;
+			}
+		}
+	}
+}
+
+@media (max-width: 670px) {
+	.pokemonBtn {
+		padding-left: 5px;
+		border-radius: 20px;
+	}
+
+	.pokemonNames {
+		font-size: 18px;
+		min-width: 0;
+	}
+
+	.nav {
+		width: 100% !important;
+	}
+
+	.pokemonInfo {
+		padding: 15px 0;
+
+		.section {
+			margin: unset;
+		}
+	}
+}

@@ -1,4 +1,5 @@
 import { NamedApiResource } from '../shared/named-api-resource';
+import { IPokemonSpecies } from './pokemon-species';
 
 export interface IPokemon {
 	id: number;
@@ -57,7 +58,7 @@ export interface IPokemon {
 		front_default: string;
 		front_shiny: string;
 	};
-	species: NamedApiResource;
+	species: NamedApiResource | IPokemonSpecies;
 	stats: {
 		base_stat: number;
 		effort: number;

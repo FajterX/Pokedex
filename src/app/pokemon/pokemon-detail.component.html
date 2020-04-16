@@ -1,1 +1,4 @@
-<p>pokemon-detail works!</p>
+<div *ngIf="pokemon">
+    <img [src]="pokemon.sprites.front_default" />
+    <p>{{ name | uppercase}}</p>
+</div>

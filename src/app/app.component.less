@@ -1,10 +1,33 @@
-.background {
-	background-color: #ef5350;
+.wrapper {
+	margin: 0 auto;
+	max-width: 1366px;
 	height: 100%;
-	padding: 50px;
+	overflow: hidden;
+
+	.topBar {
+		height: 100px;
+		background-color: #ef5350;
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+
+		div {
+			margin-right: 40px;
+
+			input {
+				height: 35px;
+				font-size: 18px;
+				padding: 5px 10px;
+				border-radius: 20px;
+
+				&:focus {
+					outline: none;
+				}
+			}
+		}
+	}
 
 	.container {
-		height: 100%;
-		background-color: rgb(176, 221, 223);
+		height: calc(100% - 100px);
 	}
 }

@@ -1,1 +1,34 @@
-<p>pokemon-list works!</p>
+<div class="content">
+    <span class="material-icons filtersBtn" (click)="visibleFilters = !visibleFilters">
+        menu
+    </span>
+    <div class="filtersWrapper" [ngClass]="{'visible': visibleFilters}">
+        <div class="filters">
+            <div class="filterSection">
+                <div class="title" (click)="genHider = !genHider">Generation: </div>
+                <div class="list" [ngClass]="{'hidden': genHider}">
+                    <label class="checkboxWrapper " *ngFor="let gen of generationList">
+                        <input type="checkbox" [checked]="gen.checked" (click)="toggleCheck(gen.name, generationList)" /> 
+                        {{gen.name}}
+                    </label>
+                </div>
+            </div>
+            <div class="filterSection">
+                <div class="title" (click)="colorHider = !colorHider">Color: </div>
+                <div class="list" [ngClass]="{'hidden': colorHider}">
+                    <label class="checkboxWrapper " *ngFor="let color of colorList">
+                        <input type="checkbox" [checked]="color.checked" (click)="toggleCheck(color.name, colorList)" /> 
+                        {{color.name}}
+                    </label>
+                </div>
+            </div>
+            <button (click)="applyFilter()">Filter</button>
+        </div>
+    </div>
+    <div class="listWrapper" (scroll) = "onScroll($event)" >
+        <div *ngFor="let pokemon of visiblePokemons; index as i">
+            <app-pokemon-btn [active]='activeName === pokemon.name' [name]="pokemon.name" [index]="i"></app-pokemon-btn>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,98 @@
+.content {
+	height: 100%;
+	width: 100%;
+	display: flex;
+
+	.filtersBtn {
+		display: none;
+	}
+
+	.filtersWrapper {
+		width: 250px;
+
+		.filters {
+			margin-right: 26px;
+			overflow: auto;
+			background-color: #ef5350;
+			width: 250px;
+			padding: 20px;
+			border-bottom-right-radius: 20px;
+			max-height: 100%;
+
+			.filterSection {
+				padding: 5px;
+
+				.title {
+					font-size: 20px;
+					font-weight: bold;
+					cursor: pointer;
+				}
+
+				.hidden {
+					max-height: 25px;
+					overflow: hidden;
+
+					&::before {
+						padding-left: 44px;
+						content: "...";
+					}
+				}
+
+				.checkboxWrapper {
+					font-size: 16px;
+					padding: 5px 0;
+					display: block;
+					width: 150px;
+					cursor: pointer;
+					input {
+						vertical-align: middle;
+						width: 16px;
+						height: 16px;
+					}
+				}
+			}
+			button {
+				font-size: 17px;
+				background-color: #ff4743;
+				margin: 10px;
+				padding: 5px 70px;
+				cursor: pointer;
+			}
+		}
+	}
+
+	.listWrapper {
+		overflow: auto;
+		height: 100%;
+		width: calc(100% - 250px);
+	}
+
+	@media (max-width: 992px) {
+		.filtersBtn {
+			position: absolute;
+			padding: 5px;
+			top: 65px;
+			left: 10px;
+			cursor: pointer;
+			display: unset;
+
+			&:hover {
+				background-color: #ec6d6b;
+			}
+		}
+
+		.filtersWrapper {
+			display: none;
+			position: absolute;
+			z-index: 2;
+		}
+
+		.listWrapper {
+			width: 100%;
+		}
+	}
+
+	.visible {
+		display: unset;
+	}
+}
